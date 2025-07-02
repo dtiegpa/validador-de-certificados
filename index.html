@@ -39,19 +39,19 @@
           return;
         }
 
-        resultado.innerText = 'Buscando...';
+        resultado.innerText = 'Procurando certificação...';
 
         try {
           const response = await fetch(`https://script.google.com/macros/s/AKfycbwmBhhUuHn7Lnuic4kSSzBVcnynZMB3zEamcN7Hr2bgca2zPpPO_Jtfcia89uFyUREsEQ/exec?nome=${encodeURIComponent(nome)}`);
           const data = await response.json();
 
           if (!data || data.length === 0) {
-            resultado.innerText = 'Nenhum certificado encontrado para este nome.';
+            resultado.innerText = 'Não foi encontrado nenhuma certificação válida com esse nome!';
           } else {
             resultado.innerHTML = data.map(item => `
               <div class="mb-4 border-b pb-2">
                 <p><strong>Nome:</strong> ${item.nome}</p>
-                <p><strong>Curso:</strong> ${item.curso}</p>
+                <p><strong>Certificação:</strong> ${item.curso}</p>
                 <p><strong>Carga Horária:</strong> ${item.carga}</p>
               </div>
             `).join('');
